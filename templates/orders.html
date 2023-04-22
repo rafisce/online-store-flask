@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="col-12" dir="rtl">
+
+    {% if orders %}
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">תאריך</th>
+            <th scope="col">סכום</th>
+            <th scope="col">שם</th>
+            <th scope="col">שם משפחה</th>
+            <th scope="col">אימייל</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{order[0].id}}</td>
+            <td>{{order[0].ordered_at}}</td>
+            <td>{{order[0].amount}}</td>
+            <td>{{order[1].name}}</td>
+            <td>{{order[1].last_name}}</td>
+            <td>{{order[1].email}}</td>
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h1> לא קיימות הזמנות</h1>
+    {% endif %}
+
+</div>
+{% endblock %}

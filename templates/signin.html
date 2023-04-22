@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% from 'macros.html' import form_field %}
+
+
+{% block content %}
+
+<div class="container-sm form">
+        {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class=flashes>
+    {% for message in messages %}
+        <span>{{ message }}</span>
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-6">
+            <form class="form" method="post" action={{url_for('signin')}}>
+                {{form_field('email','אימייל','email','הכנס אימייל')}}
+                {{form_field('password','סיסמה','password','הכנס סיסמה')}}
+                <div class="link">  אין לך חשבון? <a href={{url_for('register')}}>הירשם</a></div>
+                <div class="field"><button type="submit">התחבר</button></div>
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock %}

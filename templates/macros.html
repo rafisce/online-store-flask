@@ -1,0 +1,77 @@
+{% macro product_card(product) %}
+
+
+<div class="col-lg-3 col-md-4 col-sm-6 mb-4 ">
+    <div class="product-grid">
+        <div class="product-image">
+            <a href="{{url_for('product',id=product.id)}}" class="image">
+                {% if product.img %}
+                <img src={{url_for('static',filename='images/'+product.img)}}>
+                {% else %}
+                <img src={{url_for('static',filename='images/no-pic.jpg')}}>
+                {% endif %}
+
+            </a>
+            {% if product.discount %}
+            <span class="product-discount-label">%{{product.discount}}</span>
+            {% endif %}
+            <!--                <ul class="product-links">-->
+            <!--                    <li><a href="#"><i class="fa fa-search"></i></a></li>-->
+            <!--                    <li><a href="#"><i class="fa fa-heart"></i></a></li>-->
+            <!--                    <li><a href="#"><i class="fa fa-random"></i></a></li>-->
+            <!--                </ul>-->
+            <a href="{{url_for('add_to_cart',id=1)}}" class="add-to-cart">הוסף לעגלה</a>
+        </div>
+        <div class="product-content">
+            <h3 class="title"><a href="{{url_for('product',id=product.id)}}">{{product.name}}</a></h3>
+            <div class="price">₪{{product.price}}</div>
+        </div>
+    </div>
+</div>
+
+
+{% endmacro %}
+
+
+{% macro rating(rate) %}
+
+
+<div class="rating">
+      <span>
+        <i
+                class="{{'fa fa-star' if  rate >= 1 else 'fa fa-star-half-o' if rate >= 0.5 else 'fa fa-star-o'}}"
+
+        ></i>
+      </span>
+    <span>
+        <i
+                class="{{'fa fa-star' if  rate >= 2 else 'fa fa-star-half-o' if rate >= 1.5 else 'fa fa-star-o'}}"
+        ></i>
+      </span>
+    <span>
+        <i
+                class="{{'fa fa-star' if  rate >= 3 else 'fa fa-star-half-o' if rate >= 2.5 else 'fa fa-star-o'}}"
+        ></i>
+      </span>
+    <span>
+        <i
+                class="{{'fa fa-star' if  rate >= 4 else 'fa fa-star-half-o' if rate >= 3.5 else 'fa fa-star-o'}}"
+        ></i>
+      </span>
+    <span>
+        <i
+                class="{{'fa fa-star' if  rate >= 5 else 'fa fa-star-half-o' if rate >= 4.5 else 'fa fa-star-o'}}"
+        ></i>
+      </span>
+    <!--      {<span>{numReviews + " reviews"}</span>}-->
+</div>
+{% endmacro %}
+
+{% macro form_field(field_name,field_label,field_type,field_placeholder,field_value) %}
+
+<div class="field">
+    <label for="{{field_name}}">{{field_label}}</label>
+    <input name="{{field_name}}" type="{{field_type}}" placeholder="{{field_placeholder}}"
+           value="{{field_value}}" required>
+</div>
+{% endmacro %}

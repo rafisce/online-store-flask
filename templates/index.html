@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import product_card %}
+
+{% block title %} online-store {% endblock %}
+{% block content %}
+
+
+<div class="{{'row mt-5 '+'justify-content-center' if products|length <4 else ''}}">
+    {% for product in products %}
+
+    {{ product_card(product) }}
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}

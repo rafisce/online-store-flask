@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="wrapper">
+        <div class="product-img">
+            {% if product.img %}
+            <img src={{url_for('static',filename='images/'+product.img)}} height="420" width="327">
+            {% else %}
+            <img src={{url_for('static',filename='images/no-pic.jpg')}} height="420" width="345">
+            {% endif %}
+
+
+        </div>
+        <div class="product-info">
+            <div class="product-text">
+                <h1>{{product.name}}</h1>
+                <h2>by online store</h2>
+                <p class="desc">
+                    {{product.desc}} </p>
+            </div>
+            <div class="product-price-btn">
+                <p><span>₪{{product.price}}</span></p>
+                <a href="{{url_for('add_to_cart',id=1)}}">
+                    <button>הוסף לעגלה</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
