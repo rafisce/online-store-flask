@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% from 'macros.html' import form_field %}
+
+{% block content %}
+<div class="container-sm form">
+
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-6">
+            <form class="form" method="post" action={{url_for('shipping',checkout=0)}}>
+                {{form_field('name','שם','text','הכנס שם',user.name)}}
+                {{form_field('lname','שם משפחה','text','הכנס שם משפחה',user.last_name)}}
+                {{form_field('address','כתובת','text','הכנס כתובת')}}
+                {{form_field('city','עיר','text','הכנס עיר')}}
+                {{form_field('country','ארץ','text','הכנס ארץ')}}
+                {{form_field('zip','מיקוד','number','הכנס מיקוד')}}
+
+                <div class="field">
+                    <button class="btn btn-dark btn-lg" type="submit">אישור</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

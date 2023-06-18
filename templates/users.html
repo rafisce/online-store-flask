@@ -15,13 +15,16 @@
         </tr>
         </thead>
         <tbody>
+        {% for user in users %}
         <tr>
+
             <td>{{user.id}}</td>
             <td>{{user.name}}</td>
             <td>{{user.last_name}}</td>
             <td>{{user.email}}</td>
             <td>{{'כן' if user.is_admin else 'לא'}}</td>
         </tr>
+        {% endfor %}
         </tbody>
     </table>
 

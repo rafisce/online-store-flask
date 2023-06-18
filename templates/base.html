@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
             crossorigin="anonymous"></script>
+
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#A5BA8D" dir="rtl">
     <a class="navbar-brand" href={{url_for('home')}}>אונליין סטור</a>
@@ -55,24 +57,26 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{url_for('users')}}">משתמשים</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">הזמנות</a>
+                    <a class="dropdown-item" href="{{url_for('orders')}}">הזמנות</a>
                 </div>
             </li>
             {% endif %}
             <li class="nav-item">
-
-                <div id="ex4"> {% if current_user.cart %}
-                    <span class="p1 fa-stack fa-2x has-badge"
-                          data-count='{{current_user.cart|length|string}}'>
+                <a href="{{url_for('cart')}}">
+                    <div id="ex4"> {% if current_user.is_authenticated and current_user.cart['cart'] %}
+                        <span class="p1 fa-stack fa-2x has-badge"
+                              data-count='{{current_user.cart["cart"]|length}}'>
                         <i class="p3 fa fa-shopping-cart fa-stack-1x xfa-inverse"
                            data-count="4b"></i>
                       </span>{% else %}
-                    <span class="p1 fa-stack fa-2x has-badge">
+                        <span class="p1 fa-stack fa-2x has-badge">
                         <i class="p3 fa fa-shopping-cart fa-stack-1x xfa-inverse"
                            data-count="4b"></i>
                       </span>
-                    {% endif %}
-                </div>
+                        {% endif %}
+                    </div>
+                </a>
+
 
             </li>
 

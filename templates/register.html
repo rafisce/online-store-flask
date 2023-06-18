@@ -6,24 +6,26 @@
 {% block content %}
 <div class="container-sm form">
     {% with messages = get_flashed_messages() %}
-  {% if messages %}
+    {% if messages %}
     <div class=flashes>
-    {% for message in messages %}
+        {% for message in messages %}
         <span>{{ message }}</span>
-    {% endfor %}
+        {% endfor %}
     </div>
-  {% endif %}
-{% endwith %}
-     <div class="row d-flex justify-content-center align-items-center">
+    {% endif %}
+    {% endwith %}
+    <div class="row d-flex justify-content-center align-items-center">
         <div class="col-12 col-md-6">
-             <form class="form" method="post" action={{url_for('register')}}>
-                 {{form_field('name','שם','text','הכנס שם')}}
-                 {{form_field('lname','שם משפחה','text','הכנס שם משפחה')}}
-                 {{form_field('email','אימייל','email','הכנס אימייל')}}
-                 {{form_field('password','סיסמה','password','הכנס סיסמה')}}
-                 {{form_field('confirm','אישור סיסמה','password','אשר סיסמה')}}
-                 <div class="link">  יש לך חשבון? <a href={{url_for('signin')}}>התחבר</a></div>
-                <div class="field"><button type="submit" >הירשם</button></div>
+            <form class="form" method="post" action={{url_for('register')}}>
+                {{form_field('name','שם','text','הכנס שם')}}
+                {{form_field('lname','שם משפחה','text','הכנס שם משפחה')}}
+                {{form_field('email','אימייל','email','הכנס אימייל')}}
+                {{form_field('password','סיסמה','password','הכנס סיסמה')}}
+                {{form_field('confirm','אישור סיסמה','password','אשר סיסמה')}}
+                <div class="link"> יש לך חשבון? <a href={{url_for('signin')}}>התחבר</a></div>
+                <div class="field">
+                    <button class="btn btn-dark btn-lg" type="submit">הירשם</button>
+                </div>
             </form>
         </div>
     </div>

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex-column mt-5 justify-content-center align-items-center ">
+
+
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="order-panel">
+                <ul>
+                    <li>
+                        <h2>משלוח</h2>
+                    </li>
+                    <li>
+                        <div class="row2">
+                            <div>
+                                <strong>שם: </strong>
+                            </div>
+                            <div>
+                                {{info.name}}
+                            </div>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div class="row2">
+                            <div>
+                                <strong>כתובת: </strong>
+                            </div>
+                            <div>
+                                {{info.address}}
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+            <div class="order-panel">
+
+
+                <ul>
+                    <li>
+                        <h2>פריטי הזמנה</h2>
+                    </li>
+                    {% for item in info['cart'] %}
+                    <li>
+                        <div class="row2">
+
+                            <div class="col-2 calc">
+                                <strong>₪{{item.total}} = ₪{{item.price}} x {{item.qty}}</strong>
+                            </div>
+                            <div class="col-2">
+                                <strong>{{item.name}}</strong>
+                            </div>
+                            <div class="col-2">
+                                {% if item.img %}
+                                <img class="img-fluid" src={{url_for('static',filename='images/'+item.img)}}>
+                                {% else %}
+                                <img class="img-fluid" src={{url_for('static',filename='images/no-pic.jpg')}}>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-12 col-md-4">
+            <div class="order-panel" dir="rtl">
+                <ul>
+                    <li>
+                        <h2>סיכום הזמנה</h2>
+                    </li>
+                    <li>
+                        <div class="row2">
+                            <div>פריטים</div>
+                            <div>{{user.cart['items_price']}} ₪</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row2">
+                            <div>משלוח</div>
+                            <div>{{user.cart['shipping']['price']}} ₪</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="row2">
+                            <div><strong>סה"כ</strong></div>
+                            <div><strong>{{user.cart['items_price']+user.cart['shipping']['price']}} ₪</strong></div>
+                        </div>
+                    </li>
+                    <li>
+                        <form method="post" action={{url_for('place_order')}}>
+                            <button class="btn" type="submit">בצע הזמנה</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock %}

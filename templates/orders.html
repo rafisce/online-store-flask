@@ -12,21 +12,25 @@
             <th scope="col">#</th>
             <th scope="col">תאריך</th>
             <th scope="col">סכום</th>
-            <th scope="col">שם</th>
-            <th scope="col">שם משפחה</th>
+            <th scope="col">משלוח</th>
+            <th scope="col">סה"כ</th>
+            <th scope="col">שם מלא</th>
             <th scope="col">אימייל</th>
+            <th scope="col">צפייה בהזמנה</th>
 
         </tr>
         </thead>
         <tbody>
         {% for order in orders %}
         <tr>
-            <td>{{order[0].id}}</td>
-            <td>{{order[0].ordered_at}}</td>
-            <td>{{order[0].amount}}</td>
-            <td>{{order[1].name}}</td>
-            <td>{{order[1].last_name}}</td>
-            <td>{{order[1].email}}</td>
+            <td>{{order.id}}</td>
+            <td>{{order.ordered_at}}</td>
+            <td>₪{{order.amount}}</td>
+            <td>₪{{order.cart['shipping']}}</td>
+            <td>₪{{order.cart['shipping']+order.amount}}</td>
+            <td>{{order.cart['name']}}</td>
+            <td>{{user.email}}</td>
+            <td><a href={{url_for('order',id=order.id)}}>צפה בהזמנה</a></td>
 
         </tr>
         {% endfor %}

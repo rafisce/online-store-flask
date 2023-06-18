@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="flex-column mt-5 justify-content-center align-items-center ">
+    <div class="row order_number"><h2><strong>מס הזמנה: {{order.id}}</strong></h2></div>
+    <div class="row">
+        <div class="col-12 col-md-8">
+            <div class="order-panel">
+                <ul>
+                    <li>
+                        <h2>משלוח</h2>
+                    </li>
+                    <li>
+                        <strong>שם: </strong>{{order.cart['name']}}
+                    </li>
+                    <li>
+                        <strong>כתובת: </strong>{{order.address}}
+                    </li>
+                </ul>
+            </div>
+            <div class="order-panel">
+
+
+                <ul>
+                    <li>
+                        <h2>פריטי הזמנה</h2>
+                    </li>
+                    {% for item in order.cart['cart'] %}
+                    <li>
+                        <div class="row2">
+
+                            <div class="col-2 calc">
+                                <strong>₪{{item.total}} = ₪{{item.price}} x {{item.qty}}</strong>
+                            </div>
+                            <div class="col-2">
+                                <a href={{url_for('product',id=item.id)}}>{{item.name}}</a>
+                            </div>
+                            <div class="col-2">
+                                {% if item.img %}
+                                <img class="img-fluid" src={{url_for('static',filename='images/'+item.img)}}>
+                                {% else %}
+                                <img class="img-fluid" src={{url_for('static',filename='images/no-pic.jpg')}}>
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-12 col-md-4">
+            <div class="order-panel" dir="rtl">
+                <ul>
+                    <li>
+                        <h2>סיכום הזמנה</h2>
+                    </li>
+                    <li>
+                        <div class="row2">
+                            <div>פריטים</div>
+                            <div>{{order.amount}} ₪</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row2">
+                            <div>משלוח</div>
+                            <div>{{order.cart['shipping']}} ₪</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row2">
+                            <div>עמלות</div>
+                            <div>0 ₪</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row2">
+                            <div><strong>סה"כ</strong></div>
+                            <div><strong>{{order.amount+order.cart['shipping']}} ₪</strong>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
